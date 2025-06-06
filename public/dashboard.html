@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Hospital Management System</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>MediCare</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active">
+                        <a href="#patients"><i class="fas fa-users"></i> Patients</a>
+                    </li>
+                    <li>
+                        <a href="#appointments"><i class="fas fa-calendar"></i> Appointments</a>
+                    </li>
+                    <li>
+                        <a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a>
+                    </li>
+                    <li>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="dashboard-header">
+                <h1>Patient Management</h1>
+                <button id="addPatientBtn" class="btn-primary">
+                    <i class="fas fa-plus"></i> Add New Patient
+                </button>
+            </header>
+
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search patients...">
+                    <select id="searchType">
+                        <option value="id">Patient ID</option>
+                        <option value="name">Name</option>
+                        <option value="condition">Condition</option>
+                        <option value="date">Visit Date</option>
+                    </select>
+                    <button id="searchBtn" class="btn-secondary">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </section>
+
+            <!-- Patients Table -->
+            <section class="patients-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Patient ID</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Contact</th>
+                            <th>Last Visit</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="patientsTableBody">
+                        <!-- Patient records will be dynamically added here -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add/Edit Patient Modal -->
+    <div id="patientModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Add New Patient</h2>
+            <form id="patientForm">
+                <div class="form-group">
+                    <label for="patientName">Full Name</label>
+                    <input type="text" id="patientName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientAge">Age</label>
+                    <input type="number" id="patientAge" name="age" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientGender">Gender</label>
+                    <select id="patientGender" name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="patientContact">Contact Number</label>
+                    <input type="tel" id="patientContact" name="contact" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientEmail">Email</label>
+                    <input type="email" id="patientEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientAllergies">Allergies</label>
+                    <textarea id="patientAllergies" name="allergies"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="patientHistory">Medical History</label>
+                    <textarea id="patientHistory" name="medicalHistory"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="patientPrescriptions">Current Prescriptions</label>
+                    <textarea id="patientPrescriptions" name="prescriptions"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="patientNotes">Doctor Notes</label>
+                    <textarea id="patientNotes" name="notes"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Patient</button>
+                    <button type="button" class="btn-secondary" id="cancelBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h2>Confirm Delete</h2>
+            <p>Are you sure you want to delete this patient record? This action cannot be undone.</p>
+            <div class="form-actions">
+                <button id="confirmDelete" class="btn-danger">Delete</button>
+                <button id="cancelDelete" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html> 
